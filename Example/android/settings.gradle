@@ -1,0 +1,4 @@
+rootProject.name = 'TestiHealthLibrary'
+
+include ':app' , ':ihealthlibrary-react-native';
+project(':ihealthlibrary-react-native').projectDir = new File(rootProject.projectDir, '../node_modules/ihealthlibrary-react-native/android')
