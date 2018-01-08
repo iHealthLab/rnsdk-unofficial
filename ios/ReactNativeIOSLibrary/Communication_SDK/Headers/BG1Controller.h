@@ -22,7 +22,7 @@
 
 /**
  * Initialization for BG1 (connected BG via sound jack)
- * When the app detected headphone device, the notification with the name of kNotificationNameAudioDeviceInsert will be sent. After the device disconnected, the notification with the name of  kNotificationNameBG1DidDisConnect will be received.
+ * When the application detects a headphone device, it sends a notification named kNotificationNameAudioDeviceInsert. When you receive kNotificationNameAudioDeviceInsert notification, you need to adjust the system volume to its maximum. After the device is disconnected, you receive a notification with the name kNotificationNameBG1DidDisConnect.
  */
 -(void)initBGAudioModule;
 

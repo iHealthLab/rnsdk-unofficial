@@ -16,14 +16,22 @@
 /**
  UUID
  */
-@property (strong, nonatomic) NSString *currentUUID;
+@property (copy, nonatomic) NSString *currentUUID;
 /**
  serial number or mac
  */
-@property (strong, nonatomic) NSString *serialNumber;
+@property (copy, nonatomic) NSString *serialNumber;
 /**
  firmware version
  */
-@property (strong, nonatomic) NSString *firmwareVersion;
+@property (copy, nonatomic) NSString *firmwareVersion;
+/**
+ hardware version
+ */
+@property (copy, nonatomic) NSString *hardwareVersion;
+/**
+ model number
+ */
+@property (copy, nonatomic) NSString *modelNumber;
 
 @end

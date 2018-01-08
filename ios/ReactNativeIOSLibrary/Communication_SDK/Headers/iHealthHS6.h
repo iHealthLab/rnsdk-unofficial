@@ -155,4 +155,22 @@ Return parameters:
 -(void)commandHS6WithUser:(HealthUser *)tempUser withSyncWeightUnit:(IHHS6SDKUnitWeight)unit withSuccessBlock:(DisposeHS6SyncWeightUnitSuccessBlock)unitBlock withErrorBlock:(DisposeHS6SyncWeightUnitErrorBlock)errorBlock;
 
 
+/**
+  DownloadHS6Data
+ 
+ Import parameter:
+ @param tempUser Properties included: clientID，clientSecret，userAccount
+ clientID & clientSecret: the only identification for users of the SDK, requires registration from iHealth administrator, please email: lvjincan@ihealthlabs.com.cn.com for more information.
+ @param downloadTS :From 1970, the number of seconds, download data download 100 data after this point in time, if the data returned leftnumber still have value, please download to the last of the last point in time, the interface will continue to download the 100 data
+ Return parameters:
+ @param getHS6Data  AllHS6Data
+ 
+ @param blockHS6DataFromCloudLastTS  lastTS
+ 
+ @param blockHS6DataFromCloudLeftNumber  Left Data number
+
+ @param errorBlock  error code    101,102,103,104:networkerror   400:input error
+ */
+-(void)commandDownloadHS6Data:(HealthUser *)tempUser withDownloadTS:(long)downloadTS  withSuccessBlock:(BlockHS6DataFromCloud)getHS6Data blockHS6DataFromCloudLastTS:(BlockHS6DataFromCloudLastTS)blockHS6DataFromCloudLastTS blockHS6DataFromCloudLeftNumber:(BlockHS6DataFromCloudLeftNumber)blockHS6DataFromCloudLeftNumber withErrorBlock:(DisposeHS6ErrorBlock)errorBlock;
+
 @end

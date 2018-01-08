@@ -51,9 +51,11 @@ module.exports = {
      * Device type number for BG5(4294967296) 1 << 32
      */
     BG5: RCTModule.BG5,
-    /**
-     * Device type number for FDIR_V3(64) 1 << 6
-     */
+
+    ECG: RCTModule.ECG,
+
+    ECGUSB: RCTModule.ECGUSB,
+
     BTM: RCTModule.BTM,
 
     /**

@@ -38,9 +38,9 @@
  Query the latest firmware information from server
 
  @param deviceType DFUDeviceType enum
- @param productModel Model Number（you can get from IDPS）
- @param currentFirmwareVersion current firmware version (you can get from IDPS）
- @param hardwareVersion hardware version (you can get from IDPS）
+ @param productModel Model Number（you can get from IDPS or device object's property）
+ @param currentFirmwareVersion current firmware version (you can get from IDPS or device object's property）
+ @param hardwareVersion hardware version (you can get from IDPS or device object's property）
  @param successBlock success block
  @param errorBlock DFUError enum(DFUError_UnsupportedDeviceType,DFUError_InvalidFirmwareVersion,DFUError_InvalidHardwareVersion,DFUError_NetworkError,DFUError_ServerError)
  @note  No need to connect but IDPS should be known.
@@ -57,9 +57,9 @@
  Download firmware file
 
  @param deviceType DFUDeviceType enum
- @param productModel Model Number（you can get from IDPS）
+ @param productModel Model Number（you can get from IDPS or device object's property）
  @param firmwareVersion firmware version you want to download (the latest version you can get from "queryServerFirmwareInfoWithDeviceType:")
- @param hardwareVersion hardware version (you can get from IDPS)
+ @param hardwareVersion hardware version (you can get from IDPS or device object's property)
  @param startBlock download start block
  @param downloadFirmwareProgressBlock download progress block [0-100]
  @param successBlock success block (firmwareIdentifier is used to in "startUpgradeWithDeviceType:")
@@ -89,18 +89,18 @@
  Start update
  
  @param deviceType DFUDeviceType enum
- @param productModel Model Number（you can get from IDPS）
+ @param productModel Model Number（you can get from IDPS or device object's property）
  @param uuid device UUID
  @param firmwareIdentifier firmware identifier
  @param firmwareVersion destination firmware version
- @param hardwareVersion  hardware version (you can get from IDPS)
+ @param hardwareVersion  hardware version (you can get from IDPS or device object's property)
  @param deviceReplyCannotUpgradeBlock cannot upgrade and return reason
  @param transferBeginBlock transfer begin
  @param transferProgressBlock  transfer progress block [0-100]
- @param transferSuccessBlock transfer success block (return write MCU speed, unit:Byte/s, only support AM3S,AM4,PO3,HS2,HS4,ECG,ABPM)
- @param transferResultBlock transfer result block (return result type, pasue reason, pause length,only support BG5S,BP5S)
+ @param transferSuccessBlock transfer success block (return write MCU speed, unit:Byte/s, only support AM3S,AM4,PO3,HS2,HS4,ECG)
+ @param transferResultBlock transfer result block (return result type, pasue reason, pause length,only support BG5S,BP5S,ABPM)
  @param upgradeSuccessBlock upgrade success block（only support AM3）
- @param upgradeFailBlock upgrade fail block (return fail reason, only support AM3,AM3S,AM4,PO3,HS2,HS4,ECG,ABPM)
+ @param upgradeFailBlock upgrade fail block
  @param upgradeErrorBlock upgrade error blcok (DFUError enum(DFUError_InUpgradeCannotExecuteCommand,DFUError_UnsupportedDeviceType,DFUError_InvalidUUID,DFUError_NoConnectedDevice,DFUError_NoFirmwareFile,DFUError_InvalidFirmwareInfoFile,DFUError_CommandTimeOut,DFUError_DeviceDisconnect))
  */
 - (void)startUpgradeWithDeviceType:(DFUDeviceType)deviceType

@@ -151,7 +151,7 @@ DisposeBGSendBottleIDBlock:(DisposeBGSendBottleIDBlock)disposeBGSendBottleIDBloc
  Analyze code include bottleID，DueDate and the number of strips. Only Available for GOD Code
  
  @param encodeString The code String gets by scanning the QR code.
- @return return a dictionary contains keys such as @"BottleID",@"StripNum",@"DueDate",@"OpenDate",@"CodeDueDateOfOpen"; return nil if input parameter is GDH code.
+ @return return a dictionary contains keys such as @"BottleID",@"StripNum",@"DueDate"; return nil if input parameter is GDH code or code is invalid.
  */
 -(NSDictionary *)codeStripStrAnalysis:(NSString *)encodeString;
 

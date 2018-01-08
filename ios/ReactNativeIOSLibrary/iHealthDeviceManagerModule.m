@@ -145,6 +145,9 @@ RCT_EXPORT_MODULE()
         }else if([userInfo[@"DeviceName"] isEqualToString:@"FDTH"]){
             
             deviceInfo = @{@"mac":userInfo[@"SerialNumber"],@"type":@"BTM"};
+        }else if([userInfo[@"DeviceName"] isEqualToString:@"ECG3"]){
+            
+            deviceInfo = @{@"mac":userInfo[@"SerialNumber"],@"type":@"ECG"};
         }
         else
         {
@@ -220,6 +223,24 @@ RCT_EXPORT_MODULE()
     }else if([userInfo[@"DeviceName"] isEqualToString:@"FDTH"])
     {
         deviceInfo = @{@"mac":userInfo[@"SerialNumber"],@"type":@"BTM"};
+    }else if([userInfo[@"DeviceName"] isEqualToString:@"ECG3"])
+    {
+        if ([userInfo[@"ECGType"]integerValue]==1) {
+             deviceInfo = @{@"mac":userInfo[@"SerialNumber"],@"type":@"ECGUSB"};
+        }else{
+            
+             deviceInfo = @{@"mac":userInfo[@"SerialNumber"],@"type":@"ECG"};
+        }
+       
+    }else if([userInfo[@"DeviceName"] isEqualToString:@"ECG"])
+    {
+        if ([userInfo[@"ECGType"]integerValue]==1) {
+            deviceInfo = @{@"mac":userInfo[@"SerialNumber"],@"type":@"ECGUSB"};
+        }else{
+            
+            deviceInfo = @{@"mac":userInfo[@"SerialNumber"],@"type":@"ECG"};
+        }
+        
     }
     else
     {
@@ -254,6 +275,24 @@ RCT_EXPORT_MODULE()
         }else if([userInfo[@"DeviceName"] isEqualToString:@"FDTH"])
         {
             deviceInfo = @{@"mac":userInfo[@"SerialNumber"],@"type":@"BTM"};
+        }else if([userInfo[@"DeviceName"] isEqualToString:@"ECG3"])
+        {
+            if ([userInfo[@"Type"] integerValue]==1) {
+                deviceInfo = @{@"mac":userInfo[@"SerialNumber"],@"type":@"ECGUSB"};
+            }else{
+                
+              deviceInfo = @{@"mac":userInfo[@"SerialNumber"],@"type":@"ECG"};
+            }
+            
+        }else if([userInfo[@"DeviceName"] isEqualToString:@"ECG"])
+        {
+            if ([userInfo[@"ECGType"]integerValue]==1) {
+                deviceInfo = @{@"mac":userInfo[@"SerialNumber"],@"type":@"ECGUSB"};
+            }else{
+                
+                deviceInfo = @{@"mac":userInfo[@"SerialNumber"],@"type":@"ECG"};
+            }
+            
         }
         else
         {
@@ -283,6 +322,23 @@ RCT_EXPORT_MODULE()
         }else if([userInfo[@"DeviceName"] isEqualToString:@"FDTH"])
         {
             deviceInfo = @{@"mac":userInfo[@"SerialNumber"],@"type":@"BTM"};
+        }else if([userInfo[@"DeviceName"] isEqualToString:@"ECG3"])
+        {
+            if ([userInfo[@"Type"] integerValue]==1) {
+                deviceInfo = @{@"mac":userInfo[@"SerialNumber"],@"type":@"ECGUSB"};
+            }else{
+                
+                deviceInfo = @{@"mac":userInfo[@"SerialNumber"],@"type":@"ECG"};
+            }
+        }else if([userInfo[@"DeviceName"] isEqualToString:@"ECG"])
+        {
+            if ([userInfo[@"ECGType"]integerValue]==1) {
+                deviceInfo = @{@"mac":userInfo[@"SerialNumber"],@"type":@"ECGUSB"};
+            }else{
+                
+                deviceInfo = @{@"mac":userInfo[@"SerialNumber"],@"type":@"ECG"};
+            }
+            
         }
         else
         {
@@ -444,6 +500,25 @@ RCT_EXPORT_METHOD(startDiscovery:(nonnull NSString *)deviceType){
             
             [[ScanDeviceController commandGetInstance] commandScanDeviceType:HealthDeviceType_THV3];
             
+        }else if ([deviceType isEqualToString:@"ECG"]){
+            
+            [[ScanDeviceController commandGetInstance] commandScanDeviceType:HealthDeviceType_ECG3];
+            
+        }else if ([deviceType isEqualToString:@"ECGUSB"]) {
+            
+            ECG3USB*myecg3 = [[ECG3USBController shareECG3USBController] getAllCurrentECG3USBInstace];
+            
+            if (myecg3!=nil) {
+                
+                NSDictionary* deviceInfo = [[NSDictionary alloc]init];
+                
+                deviceInfo = @{@"mac":myecg3.serialNumber,@"type":@"ECGUSB"};
+                
+                [self.bridge.eventDispatcher sendDeviceEventWithName:@"ScanDevice" body:deviceInfo];
+            }
+            
+            
+            
         }else{
         
         
@@ -482,10 +557,11 @@ RCT_EXPORT_METHOD(stopDiscovery){
     
     [[ScanDeviceController commandGetInstance] commandStopScanDeviceType:HealthDeviceType_HS4];
     
-    
     [[ScanDeviceController commandGetInstance] commandStopScanDeviceType:HealthDeviceType_ECG3];
     
-     [[ScanDeviceController commandGetInstance] commandStopScanDeviceType:HealthDeviceType_BP5SRW];
+    [[ScanDeviceController commandGetInstance] commandStopScanDeviceType:HealthDeviceType_BP5SRW];
+    
+    [[ScanDeviceController commandGetInstance] commandStopScanDeviceType:HealthDeviceType_ECG3];
     
     [self.bridge.eventDispatcher sendDeviceEventWithName:@"ScanFinish" body:nil];
 }
@@ -678,6 +754,25 @@ RCT_EXPORT_METHOD(connectDevice:(nonnull NSString *)mac type:(nonnull NSString *
         }else if ([deviceType isEqualToString:@"BTM"]){
             
             [[ConnectDeviceController commandGetInstance] commandContectDeviceWithDeviceType:HealthDeviceType_THV3 andSerialNub:mac];
+            
+        }else if ([deviceType isEqualToString:@"ECG"]){
+            
+            [[ConnectDeviceController commandGetInstance] commandContectDeviceWithDeviceType:HealthDeviceType_ECG3 andSerialNub:mac];
+            
+        }else if ([deviceType isEqualToString:@"ECGUSB"]) {
+            
+            ECG3USB*myecg3 = [[ECG3USBController shareECG3USBController] getAllCurrentECG3USBInstace];
+            
+            if (myecg3!=nil) {
+                
+                NSDictionary* deviceInfo = [[NSDictionary alloc]init];
+                
+                deviceInfo = @{@"mac":myecg3.serialNumber,@"type":@"ECGUSB"};
+                
+                [self.bridge.eventDispatcher sendDeviceEventWithName:@"DeviceConnected" body:deviceInfo];
+            }
+            
+            
             
         }else{
             

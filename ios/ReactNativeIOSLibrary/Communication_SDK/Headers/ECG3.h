@@ -31,10 +31,11 @@
 /**
  * Start Measure
  * @param startMeasureBlock True: Success， False: Failed.
- * @param measureDataBlock measureData：ECGData
+ * @param waveDataBlock waveData：ECGWaveData
+ * @param pluseResultBlock pulseDic: @"isHaveHeart":Type-NSNumber Meaning- whether have heart; @"pulse":Type-NSNumberWithBool Meaning-measure pulse value only valid when isHaveHeart is true
  * @param errorBlock Communication error codes, see ECG3 error descriptions.
  */
--(void)commandECG3StartMeasure:(DisposeECG3StartMeasureBlock)startMeasureBlock withMeasureData:(DisposeECG3MeasureDataBlock)measureDataBlock withErrorBlock:(DisposeECG3ErrorBlock)errorBlock;
+-(void)commandECG3StartMeasure:(DisposeECG3StartMeasureBlock)startMeasureBlock withWaveData:(DisposeECG3WaveDataBlock)waveDataBlock withPulseResult:(DisposeECG3PluseResultBlock)pluseResultBlock withErrorBlock:(DisposeECG3ErrorBlock)errorBlock;
 
 /**
  * Finish Measure

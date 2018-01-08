@@ -36,8 +36,9 @@ import HS4SView from './HS4SView';
 import BG1View from './BG1View';
 import HS6View from './HS6View';
 import BG5View from './BG5View';
+import ECGView from './ECGView';
+import ECGUSBView from './ECGUSBView';
 import BTMView from './BTMView';
-
 import {
     iHealthDeviceManagerModule
 } from 'ihealthlibrary-react-native'
@@ -76,7 +77,7 @@ class MainView extends Component {
         console.info('scan device ------' + this.state.type)
 
         if (this.state.type == iHealthDeviceManagerModule.HS6) {
-            this.props.navigation.navigate('HS6', {type: 'HS6'})
+            this.props.navigation.navigate('HS6',{type: 'HS6'})
         } else {
             this.removeListener()
             this.addListener()
@@ -246,6 +247,8 @@ class MainView extends Component {
                                 <Picker.Item label='HS4S' value={iHealthDeviceManagerModule.HS4S}/>
                                 <Picker.Item label='HS6' value={iHealthDeviceManagerModule.HS6}/>
                                 <Picker.Item label='PO3' value={iHealthDeviceManagerModule.PO3}/>
+                                <Picker.Item label='ECG' value={iHealthDeviceManagerModule.ECG}/>
+                                <Picker.Item label='ECGUSB' value={iHealthDeviceManagerModule.ECGUSB}/>
                                 <Picker.Item label='BTM' value={iHealthDeviceManagerModule.BTM}/>
 
                                 {/*<Picker.Item label='BG5L' value={iHealthDeviceManagerModule.BG5L}/>*/}
@@ -313,11 +316,7 @@ class MainView extends Component {
                                 <TouchableOpacity
                                     onPress={() => {
                                         console.log('_pressRow:' + rowID)
-                                        if (rowData.type === 'FDIR-V3') {
-                                            iHealthDeviceManagerModule.connectTherm('315726048@163.com', rowData.mac, rowData.type, 1, 1, 2, 0, 1, 0)
-                                        } else {
-                                            iHealthDeviceManagerModule.connectDevice(rowData.mac, rowData.type)
-                                        }
+                                        iHealthDeviceManagerModule.connectDevice(rowData.mac, rowData.type)
                                     }}
                                     underlayColor="transparent">
                                     <View>
@@ -354,13 +353,7 @@ class MainView extends Component {
                                         if (rowData.type === 'KN-550BT') {
                                             rowData.type = 'KN_550BT';
                                         }
-                                        if (rowData.type === 'FDIR-V3') {
-                                            rowData.type = 'BTM';
-                                        }
-                                        this.props.navigation.navigate(rowData.type, {
-                                            type: rowData.type,
-                                            mac: rowData.mac
-                                        })
+                                        this.props.navigation.navigate(rowData.type, {type: rowData.type, mac: rowData.mac})
                                     }}
                                     underlayColor="transparent">
                                     <View>
@@ -386,7 +379,7 @@ const SimpleStackNavigator = StackNavigator({
         screen: MainView,
         navigationOptions: {
             headerTitle: 'iHealthReactNative',
-            headerTitleStyle: {
+            headerTitleStyle:{
                 alignSelf: 'center'
             }
         }
@@ -451,6 +444,12 @@ const SimpleStackNavigator = StackNavigator({
             headerTitle: 'BG1View'
         }
     },
+    BG1: {
+        screen: BG1View,
+        navigationOptions: {
+            headerTitle: 'BG1View'
+        }
+    },
     BG5: {
         screen: BG5View,
         navigationOptions: {
@@ -463,12 +462,25 @@ const SimpleStackNavigator = StackNavigator({
             headerTitle: 'HS6View'
         }
     },
+    ECG: {
+        screen: ECGView,
+        navigationOptions: {
+            headerTitle: 'ECGView'
+        }
+    },
+    ECGUSB: {
+        screen: ECGUSBView,
+        navigationOptions: {
+            headerTitle: 'ECGUSBView'
+        }
+    },
     BTM: {
         screen: BTMView,
         navigationOptions: {
             headerTitle: 'BTMView'
         }
     }
+
 
 })
 

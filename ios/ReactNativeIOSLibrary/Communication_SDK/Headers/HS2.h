@@ -15,7 +15,6 @@
 @interface HS2 : NSObject
 @property (strong, nonatomic) NSString *currentUUID;
 @property (strong, nonatomic) NSString *deviceID;
-@property (strong, nonatomic) NSNumber *daiModel;
 @property (retain, nonatomic) NSString *firmwareVersion;
 
 

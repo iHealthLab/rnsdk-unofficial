@@ -94,34 +94,6 @@
  */
 - (void)commandDeleteAllMemoryWithSuccessBlock:(BlockSuccess)successBlock errorBlock:(BlockError)errorBlock;
 
-/**
- Set Alert Setting
-
- @param alertModels specify different alert types
- @param successBlock A block refer to success.
- @param errorBlock  Operation failed, and returns the error codes.
- */
-- (void)commandSetAlertSettingWithModels:(NSArray<BPAlertSettingModel*>*)alertModels successBlock:(BlockSuccess)successBlock errorBlock:(BlockError)errorBlock;
-
-
-/**
- Ask Alert Setting
-
- @param alertSettingResultBlock return alert settings from device
- @param errorBlock Operation failed, and returns the error codes.
- */
-- (void)commandAskAlertSettingWithResult:(BlockAskAlertSetting)alertSettingResultBlock errorBlock:(BlockError)errorBlock;
-
-
-/**
- Ask devices Supported Alert Setting
-
- @param supportAlertBlock return supported settings flags
- @param errorBlock Operation failed, and returns the error codes.
- */
-- (void)commandAskSupportedAlertWithResult:(BlockAskSupportedAlert)supportAlertBlock errorBlock:(BlockError)errorBlock;
-
-
 
 /**
  Set ID String (eg.patientID, schemeID), length 250 max

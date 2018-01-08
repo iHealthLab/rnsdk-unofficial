@@ -90,9 +90,14 @@ typedef void (^DisposeECG3ErrorBlock)(ECG3ErrorID errorID);
 typedef void (^DisposeECG3StartMeasureBlock)(BOOL resetSuc);
 
 /**
- Measure Data
+ ECG3 Wave Data
  */
-typedef void (^DisposeECG3MeasureDataBlock)(NSArray* measureDataArray);
+typedef void (^DisposeECG3WaveDataBlock)(NSArray* waveDataArray);
+
+/**
+ ECG3 Result
+ */
+typedef void (^DisposeECG3PluseResultBlock)(NSDictionary *pulseDic);
 
 /**
  Finish Measure

@@ -121,6 +121,8 @@
 ///‘serialNumber’ is for separating different device when multiple device have been connected.
 @property (copy, nonatomic) NSString *serialNumber;
 @property (copy, nonatomic) NSString *firmwareVersion;
+@property (copy, nonatomic) NSString *hardwareVersion;
 @property (copy, nonatomic) NSString *deviceName;
 @property (copy, nonatomic) NSString *protocolString;
+@property (copy, nonatomic) NSString *modelNumber;
 @end

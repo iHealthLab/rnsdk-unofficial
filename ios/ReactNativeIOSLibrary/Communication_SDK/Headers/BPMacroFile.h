@@ -60,6 +60,8 @@ typedef NS_ENUM(NSUInteger, BPDeviceError) {
     BPError19,
     /// PP(Average BP) exceeds limit
     BPError20,
+    /// User stop measure(for ABPM history measurement only)
+    BPErrorUserStopMeasure,
     /// device error, error message displayed automatically
     BPNormalError = 30,
     /// Abnormal communication
@@ -194,6 +196,7 @@ typedef void(^BlockDisplayStatus)(NSDictionary *statusDict);
 
 #define kResultBPIsAutoMeasure @"isAutoMeasure"
 #define kResultBPRemeasureMode @"remeasureMode"
+#define kResultBPHasRawPressure @"hasRawPressure"
 #define kResultBPStartMeasureAngle @"startMeasureAngle"
 #define kResultBPMeasureAngleDelta @"measureAngleDelta"
 #define kResultBPIsMeasureResultFailed @"isMeasureResultFailed"

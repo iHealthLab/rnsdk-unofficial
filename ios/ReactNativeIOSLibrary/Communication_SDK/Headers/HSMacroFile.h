@@ -543,8 +543,14 @@ typedef void (^DisposeHS6SyncWeightUnitErrorBlock)(NSString *errorCode);
 
  @param dataArray dataArray
  */
-typedef void (^BlockDataFromCloud)(NSArray *dataArray);//the result of userID verification
 
+typedef void (^BlockDataFromCloud)(NSArray *dataArray);
+
+typedef void (^BlockHS6DataFromCloud)(NSArray *dataArray);//the result of userID verification
+
+typedef void (^BlockHS6DataFromCloudLastTS)(NSNumber *hs6DataLastTS);
+
+typedef void (^BlockHS6DataFromCloudLeftNumber)(NSNumber*LeftNumber);
 
 #define HS3ConnectNoti @"HS3ConnectNoti"
 #define HS3DisConnectNoti @"HS3DisConnectNoti"
