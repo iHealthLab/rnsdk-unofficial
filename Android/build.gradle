@@ -34,6 +34,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.0.0'
     testCompile 'junit:junit:4.12'
     compile 'com.facebook.react:react-native:+'
-    compile files('libs/iHealthLibrary_2.3.5.5.jar')
+    compile files('libs/iHealthLibrary_2.4.0.9.jar')
     compile files('libs/smartlinklib3.6.4_product.jar')
 }
